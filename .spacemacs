@@ -253,6 +253,13 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+
+  (global-set-key (kbd "C-c o") 
+                  (lambda () (interactive) (find-file "~/Documents/cs/org/outfit7.org")))
+  (global-set-key (kbd "C-c b") 
+                  (lambda () (interactive) (find-file "~/Documents/cs/org/bee7.org")))
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (setq org-default-notes-file "~/Documents/cs/org/bee7.org")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -265,10 +272,12 @@ you should place you code here."
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
-    ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default))))
+    ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default)))
+ '(dired-recursive-deletes (quote always)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
