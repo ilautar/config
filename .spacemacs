@@ -257,9 +257,14 @@ you should place you code here."
   (global-set-key (kbd "C-c o") 
                   (lambda () (interactive) (find-file "~/Documents/cs/org/outfit7.org")))
   (global-set-key (kbd "C-c b") 
-                  (lambda () (interactive) (find-file "~/Documents/cs/org/bee7.org")))
+                  (lambda () (interactive) (find-file "~/Documents/cs/org/private.org")))
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
-  (setq org-default-notes-file "~/Documents/cs/org/bee7.org")
+  (setq org-default-notes-file "~/Documents/cs/org/outfit7.org")
+  (setq org-todo-keywords
+        '((sequence "TODO" "FOLLOWUP" "DONE")))
+  (setq org-agenda-files (directory-files-recursively "~/Documents/cs/org/" "\\.org$"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -273,11 +278,42 @@ you should place you code here."
  '(custom-safe-themes
    (quote
     ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default)))
- '(dired-recursive-deletes (quote always)))
+ '(dired-recursive-deletes (quote always))
+ '(package-selected-packages
+   (quote
+    (yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (zenburn)))
+ '(custom-safe-themes
+   (quote
+    ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default)))
+ '(dired-recursive-deletes (quote always))
+ '(package-selected-packages
+   (quote
+    (yasnippet-snippets writeroom-mode visual-fill-column symon string-inflection spaceline-all-the-icons spaceline solarized-theme pippel pipenv password-generator paradox overseer nameless monokai-theme magit-svn importmagic epc ctable concurrent deferred highlight-numbers helm-xref helm-purpose window-purpose imenu-list helm-projectile helm-make helm-gitignore helm-git-grep godoctor go-tag go-rename go-impl go-gen-test go-fill-struct gitignore-templates flx-ido evil-magit evil-lion evil-goggles evil-cleverparens paredit editorconfig doom-modeline eldoc-eval shrink-path all-the-icons memoize counsel-projectile counsel swiper ivy go-mode centered-cursor-mode helm helm-core auto-complete popup font-lock+ dotenv-mode yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+)
