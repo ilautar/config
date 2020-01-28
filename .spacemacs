@@ -529,6 +529,18 @@ This function is called at the very end of Spacemacs initialization."
     ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default)))
  '(dired-recursive-deletes (quote always))
  '(evil-want-Y-yank-to-eol t)
+ '(org-agenda-files
+   (quote
+    ("/Users/igorlautar/Documents/cs/org/allhands_nov.org" "/Users/igorlautar/Documents/cs/org/matija_mentorship.org" "/Users/igorlautar/Documents/cs/org/outfit7.org" "/Users/igorlautar/Documents/cs/org/private.org")))
+  '(org-capture-templates
+    (quote
+     (("o" "O7 tasks" entry
+       (file+headline "/Users/igorlautar/Documents/cs/org/outfit7.org" "INCOMMING")
+       "* %?\n")
+     ("p" "private" entry
+      (file+headline "/Users/igorlautar/Documents/cs/org/private.org" "INCOMMING")
+      "* %?\n")
+     )))
  '(package-selected-packages
    (quote
     (calfw-org calfw yasnippet-snippets writeroom-mode visual-fill-column symon string-inflection spaceline-all-the-icons spaceline solarized-theme pippel pipenv password-generator paradox overseer nameless monokai-theme magit-svn importmagic epc ctable concurrent deferred highlight-numbers helm-xref helm-purpose window-purpose imenu-list helm-projectile helm-make helm-gitignore helm-git-grep godoctor go-tag go-rename go-impl go-gen-test go-fill-struct gitignore-templates flx-ido evil-magit evil-lion evil-goggles evil-cleverparens paredit editorconfig doom-modeline eldoc-eval shrink-path all-the-icons memoize counsel-projectile counsel swiper ivy go-mode centered-cursor-mode helm helm-core auto-complete popup font-lock+ dotenv-mode yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
