@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
      ;; syntax-checking
      ;; treemacs
      version-control
+     ivy
      )
 
    ;; List of additional packages that will be installed without being
@@ -64,7 +65,8 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -209,13 +211,12 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
-   ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
-   ;; size to make separators look not too crappy.
+
+   ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Hack"
                                :size 16
                                :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+                               :width normal)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
 
@@ -474,6 +475,14 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+  ;; org-mode
+
+  (defun my/org-search ()
+    (interactive)
+    (let ((org-refile-targets '((org-agenda-files :maxlevel . 1))))
+      (org-refile '(4))))
+
+  (global-set-key (kbd "C-c s") 'my/org-search)
   (global-set-key (kbd "C-c o")
                   (lambda () (interactive) (find-file "~/Documents/cs/org/outfit7.org")))
   (global-set-key (kbd "C-c b")
@@ -486,6 +495,24 @@ you should place you code here."
   (setq org-todo-keywords
         '((sequence "TODO" "FOLLOWUP" "DONE")))
   (setq org-agenda-files (directory-files-recursively "~/Documents/cs/org/" "\\.org$"))
+
+  ;; (setq-default dotspacemacs-configuration-layers '(
+  ;;                                                   (multiple-cursors :variables multiple-cursors-backend 'mc))
+  ;; )
+
+  (setq org-capture-templates
+        '(("o" "O7 tasks" entry
+           (file+headline "/Users/igorlautar/Documents/cs/org/outfit7.org" "INCOMMING")
+           "* %?
+")
+          ("p" "private" entry
+           (file+headline "/Users/igorlautar/Documents/cs/org/private.org" "INCOMMING")
+           "* %?
+")
+          ))
+
+  (global-set-key (kbd "C-c g") 'avy-goto-char-timer)
+  
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -524,28 +551,78 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(compilation-message-face (quote default))
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#839496")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
     ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default)))
  '(dired-recursive-deletes (quote always))
  '(evil-want-Y-yank-to-eol nil)
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-symbol-colors
+   (quote
+    ("#3b6b40f432d6" "#07b9463c4d36" "#47a3341e358a" "#1d873c3f56d5" "#2d86441c3361" "#43b7362d3199" "#061d417f59d7")))
+ '(highlight-symbol-foreground-color "#93a1a1")
+ '(highlight-tail-colors
+   (quote
+    (("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100))))
+ '(hl-bg-colors
+   (quote
+    ("#866300" "#992700" "#a7020a" "#a00559" "#243e9b" "#0061a8" "#007d76" "#5b7300")))
+ '(hl-fg-colors
+   (quote
+    ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
+ '(hl-todo-keyword-faces
+   (quote
+    (("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#3a81c3")
+     ("OKAY" . "#3a81c3")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#42ae2c")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f"))))
+ '(lsp-ui-doc-border "#93a1a1")
+ '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
     ("/Users/igorlautar/Documents/cs/org/allhands_nov.org" "/Users/igorlautar/Documents/cs/org/matija_mentorship.org" "/Users/igorlautar/Documents/cs/org/outfit7.org" "/Users/igorlautar/Documents/cs/org/private.org")))
- '(org-capture-templates
-   (quote
-    (("o" "O7 tasks" entry
-      (file+headline "/Users/igorlautar/Documents/cs/org/outfit7.org" "INCOMMING")
-      "* %?
-")
-     ("p" "private" entry
-      (file+headline "/Users/igorlautar/Documents/cs/org/private.org" "INCOMMING")
-      "* %?
-"))))
  '(package-selected-packages
    (quote
-    (treemacs-evil spaceline paradox lv hy-mode highlight-numbers helm-projectile helm-make helm-gitignore flx-ido evil-search-highlight-persist evil-magit transient go-mode helm helm-core auto-complete popup yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (emoji-cheat-sheet-plus dune company-tern tern company-lsp lsp-mode markdown-mode company-emoji chruby bundler inf-ruby auto-complete-rst alchemist elixir-mode spaceline paradox lv hy-mode highlight-numbers helm-projectile helm-make helm-gitignore flx-ido evil-search-highlight-persist evil-magit transient go-mode helm helm-core auto-complete popup yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(pos-tip-background-color "#FFFACE")
+ '(pos-tip-foreground-color "#272822")
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ '(term-default-bg-color "#002b36")
+ '(term-default-fg-color "#839496")
+ '(vc-annotate-background-mode nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+ '(xterm-color-names
+   ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
+ '(xterm-color-names-bright
+   ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -555,3 +632,4 @@ This function is called at the very end of Spacemacs initialization."
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 )
+
