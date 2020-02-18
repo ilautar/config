@@ -477,24 +477,32 @@ you should place you code here."
 
   ;; org-mode
 
-  (defun my/org-search ()
+  (defun my-org-search ()
     (interactive)
     (let ((org-refile-targets '((org-agenda-files :maxlevel . 1))))
       (org-refile '(4))))
 
-  (global-set-key (kbd "C-c s") 'my/org-search)
+  ;; (defun my-org-hook ()
+  ;;   )
+
+  ;; (add-hook 'org-mode-hook 'my-org-hook)
+
+  (global-set-key (kbd "C-c s") 'counsel-org-agenda-headlines)
+;;  (global-set-key (kbd "C-c s") 'helm-org-rifle)
+
   (global-set-key (kbd "C-c o")
                   (lambda () (interactive) (find-file "~/Documents/cs/org/outfit7.org")))
   (global-set-key (kbd "C-c b")
                   (lambda () (interactive) (find-file "~/Documents/cs/org/private.org")))
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c c") 'org-capture)
+
+;;  (global-set-key (kbd "C-c l") 'org-store-link)
+;;  (global-set-key (kbd "C-c a") 'org-agenda)
+;;  (global-set-key (kbd "C-c c") 'org-capture)
   (setq org-log-into-drawer t)
   (setq org-default-notes-file "~/Documents/cs/org/outfit7.org")
   (setq org-todo-keywords
         '((sequence "TODO" "FOLLOWUP" "DONE")))
-  (setq org-agenda-files (directory-files-recursively "~/Documents/cs/org/" "\\.org$"))
+  (setq org-agenda-files '("~/Documents/cs/org/outfit7.org" "~/Documents/cs/org/private.org"))
 
   ;; (setq-default dotspacemacs-configuration-layers '(
   ;;                                                   (multiple-cursors :variables multiple-cursors-backend 'mc))
@@ -527,9 +535,6 @@ you should place you code here."
    (quote
     ("708df3cbb25425ccbf077a6e6f014dc3588faba968c90b74097d11177b711ad1" default)))
  '(dired-recursive-deletes (quote always))
- '(org-agenda-files
-   (quote
-    ("/Users/igorlautar/Documents/cs/org/allhands_nov.org" "/Users/igorlautar/Documents/cs/org/matija_mentorship.org" "/Users/igorlautar/Documents/cs/org/outfit7.org" "/Users/igorlautar/Documents/cs/org/private.org")))
  '(package-selected-packages
    (quote
     (spaceline paradox lv hy-mode highlight-numbers helm-projectile helm-make helm-gitignore flx-ido evil-search-highlight-persist evil-magit transient go-mode helm helm-core auto-complete popup yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
@@ -606,10 +611,10 @@ This function is called at the very end of Spacemacs initialization."
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
-    ("/Users/igorlautar/Documents/cs/org/allhands_nov.org" "/Users/igorlautar/Documents/cs/org/matija_mentorship.org" "/Users/igorlautar/Documents/cs/org/outfit7.org" "/Users/igorlautar/Documents/cs/org/private.org")))
+    ("/Users/igorlautar/Documents/cs/org/matija_mentorship.org" "/Users/igorlautar/Documents/cs/org/outfit7.org" "/Users/igorlautar/Documents/cs/org/private.org")))
  '(package-selected-packages
    (quote
-    (emoji-cheat-sheet-plus dune company-tern tern company-lsp lsp-mode markdown-mode company-emoji chruby bundler inf-ruby auto-complete-rst alchemist elixir-mode spaceline paradox lv hy-mode highlight-numbers helm-projectile helm-make helm-gitignore flx-ido evil-search-highlight-persist evil-magit transient go-mode helm helm-core auto-complete popup yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (helm-org-rifle spaceline paradox lv hy-mode highlight-numbers helm-projectile helm-make helm-gitignore flx-ido evil-search-highlight-persist evil-magit transient go-mode helm helm-core auto-complete popup yasnippet undo-tree evil-unimpaired f s dash company async avy yapfify ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org powerline smeargle restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort projectile popwin pip-requirements persp-mode pcre2el spinner orgit org-plus-contrib org-bullets open-junk-file neotree mwim move-text magit-gitflow magit macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hydra dash-functional hungry-delete hl-todo highlight-parentheses parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc pkg-info helm-mode-manager epl request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-guru go-eldoc gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit magit-popup git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil company-anaconda auto-compile anaconda-mode pythonic zenburn-theme packed goto-chg eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word cython-mode company-statistics company-go column-enforce-mode clean-aindent-mode bracketed-paste bind-map bind-key auto-yasnippet auto-highlight-symbol aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
